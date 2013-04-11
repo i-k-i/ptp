@@ -35,10 +35,13 @@ def divisor(inpList, separator, position='any'):
     elif position == 'first':
         begCut = None
         endCut = len(separator)
-    else:
-        if type(position) == int:
+    elif type(position) == int:
             begCut = position-1
             endCut = position+len(str(position))
+    else:
+        print 'position in divisor may be: first, any, last or [x](int)'
+        return blockDict
+    
     itemName = ''
     for i in inpList:
         if separator in i[begCut:endCut]:
@@ -67,5 +70,6 @@ def  deficator():
     pass
 
 rawConfig = eater(pathfinder(configFile))
+
 
 print divisor(rawConfig,'* ','first')
