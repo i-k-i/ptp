@@ -13,6 +13,7 @@ def eater(pathToFile):
     '''Read file. return list of strings of file without garbage'''
     inpFile = open(pathToFile,'r')
     rawList = inpFile.readlines()
+    inpFile.close()
     clearList = []
     for i in rawList:
         clearList.append(' '.join(i.split()))
@@ -20,12 +21,11 @@ def eater(pathToFile):
 
 def divisor(inpList, separator, position='any'):
     '''return list of blocs
-    position may be: begin, any, last or [x]
+    position may be: first, any, last or [x](int)
     '''
     blocsDict={}
     begCut = None
     endCut = None
-    testString = '123456789'
     if position == 'any':
         begCut = None
         endCut = None
@@ -38,8 +38,8 @@ def divisor(inpList, separator, position='any'):
     else:
         if type(position) == int:
             begCut = position-1
-            endCut = position+len(str(position))-1
-    itemName = ''        
+            endCut = position+len(str(position))
+    itemName = ''
     for i in inpList:
         if separator in i[begCut:endCut]:
             print i
@@ -68,4 +68,4 @@ def  deficator():
 
 rawConfig = eater(pathfinder(configFile))
 
-print divisor(rawConfig,'* ','degin')
+print divisor(rawConfig,'* ','first')
